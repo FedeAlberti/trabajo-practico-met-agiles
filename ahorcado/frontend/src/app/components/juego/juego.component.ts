@@ -8,7 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class JuegoComponent implements OnInit {
 
   palabraAdivinar = "hola";
-  palabraOculta ="";
+  palabraOculta = "";
+  letrasArriesgadas= [];
 
   constructor() { }
 
@@ -19,6 +20,10 @@ export class JuegoComponent implements OnInit {
     for (let i = 0; i < this.palabraAdivinar.length; i++) { 
       this.palabraOculta += "-";      
     }
+  }
+
+  ingresarLetra(letra) {
+    this.letrasArriesgadas.push(letra);
   }
 
 }
