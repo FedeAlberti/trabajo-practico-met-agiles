@@ -1,11 +1,12 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/ahorcado
+    working_directory: ~/ahorcado/frontend
     docker:
       - image: circleci/node:6-browsers
     steps:
-      - checkout
+      - checkout:
+        path: ~/ahorcado
       - restore_cache:
           key: dependency-cache-{{ checksum "yarn.lock" }}
       - run:
