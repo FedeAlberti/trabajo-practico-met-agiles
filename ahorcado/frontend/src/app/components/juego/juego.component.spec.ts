@@ -25,12 +25,12 @@ describe('JuegoComponent', () => {
 
   //Test para comprobar si se crea una palabra a adivinar.
   it('debería contener palabra a adivinar', () => {
-    expect(component.palabraAdivinar).toBeTruthy();
+    expect(component.palabraAdivinar).toEqual('hola');
   });
 
   it('debería contener palabra oculta', () => {
     component.generarPalabraOculta();
-    expect(component.palabraOculta).toBeTruthy();
+    expect(component.palabraOculta).toEqual('----');
   });
 
   it('debería ingresar una letra',() => {
@@ -39,8 +39,6 @@ describe('JuegoComponent', () => {
     let bandera = false;
     bandera = component.letrasArriesgadas.includes(letra);
     expect(bandera).toBeTruthy();
-
-
   })
 
 });
