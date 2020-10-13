@@ -10,6 +10,8 @@ export class JuegoComponent implements OnInit {
   palabraAdivinar = "hola";
   palabraOculta = "";
   letrasArriesgadas= [];
+  fallos = 0;
+  resultado = '';
 
   constructor() { }
 
@@ -22,8 +24,40 @@ export class JuegoComponent implements OnInit {
     }
   }
 
+  //Agregar check letra
   ingresarLetra(letra) {
     this.letrasArriesgadas.push(letra);
   }
+
+  
+
+  checkLetra(letra) {
+    if(this.palabraAdivinar.includes(letra)) {
+      for (let index = 0; index < this.palabraAdivinar.length; index++) {
+        if (this.palabraAdivinar[index] === letra) {
+          this.palabraOculta = 
+            this.palabraOculta.substr(0,index) +
+            letra +
+            this.palabraOculta.substr(index + 1);
+        }
+        
+      }
+    }
+    else {
+      this.fallos ++;
+    }
+      //Agregar checkear resultado.
+
+  }
+
+  checkResultado() {
+    if(this.fallos === 6) {
+      this.resultado = 'Lose';
+    }
+    if(this.palabraOculta === this.palabraAdivinar) {
+      this.resultado = 'Win';
+    }
+  }
+
 
 }
