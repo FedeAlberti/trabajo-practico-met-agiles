@@ -3,32 +3,15 @@ jobs:
   build:
     working_directory: ~/ahorcado/frontend
     docker:
-      - image: circleci/node:6-browsers
+      - image: circleci/node:10-browsers
     steps:
-      - checkout:
-        path: ~/ahorcado
+      - checkout
       - restore_cache:
-          key: dependency-cache-{{ checksum "yarn.lock" }}
-      - run:
-          name: install-dependencies
-          command: yarn install
+          key: frontend-{{ .Branch }}-{{ checksum "package-lock.json" }}
+      - run: npm install
       - save_cache:
-          key: dependency-cache-{{ checksum "yarn.lock" }}
+          key: frontend-{{ .Branch }}-{{ checksum "package-lock.json" }}
           paths:
-            - ~/.cache/yarn
-            - ./node_modules
-      - run:
-          name: angular-build
-          command: yarn ng -- build --prod --aot --no-progress
-      - run:
-          name: angular-test
-          command: yarn test -- --single-run --no-progress
-      - store_artifacts:
-          path: test-results.xml
-          prefix: tests
-      - run:
-          name: angular-lint
-          command: yarn lint -- --formatters-dir ./tslint-formatters --format junit -o tslint.xml
-      - store_artifacts:
-          path: tslint.xml
-          prefix: lint
+            - "node_modules"
+      - run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
+      - run: npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
