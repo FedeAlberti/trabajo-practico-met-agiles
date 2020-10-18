@@ -1,17 +1,18 @@
 version: 2
 jobs:
   build:
+    working_directory: ~/my-project
     docker:
-      - image: circleci/node:10-browsers
+      - image: circleci/node:8-browsers
     steps:
       - checkout
-      - working_directory: ~/ahorcado/frontend
+      - run: cd ahorcado/frontend
       - restore_cache:
-          key: frontend-{{ .Branch }}-{{ checksum "package-lock.json" }}
+          key: ahorcado-{{ .Branch }}-{{ checksum "package.json" }}
       - run: npm install
       - save_cache:
-          key: frontend-{{ .Branch }}-{{ checksum "package-lock.json" }}
+          key: ahorcado-{{ .Branch }}-{{ checksum "package.json" }}
           paths:
             - "node_modules"
-      - run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
-      - run: npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
+      - run: xvfb-run -a npm run test -- --single-run --no-progress --browser=ChromeNoSandbox
+      - run: xvfb-run -a npm run e2e -- --no-progress --config=protractor-ci.conf.js
