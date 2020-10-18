@@ -1,10 +1,12 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/ahorcado/frontend
+    working_directory: ~/repo/ahorcado/frontend
     docker:
       - image: circleci/node:8-browsers
     steps:
+      - checkout:
+        path: ~/repo
       - restore_cache:
           key: ahorcado-{{ .Branch }}-{{ checksum "package.json" }}
       - run: npm install
