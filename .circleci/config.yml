@@ -6,7 +6,7 @@ jobs:
       - image: circleci/node:8-browsers
     steps:
       - checkout:
-        path: ~/repo
+          path: ~/repo
       - restore_cache:
           key: ahorcado-{{ .Branch }}-{{ checksum "package.json" }}
       - run: npm install
