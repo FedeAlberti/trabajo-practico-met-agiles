@@ -1,0 +1,18 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/repo/ahorcado/frontend
+    docker:
+      - image: circleci/node:12-browsers
+    steps:
+      - checkout:
+          path: ~/repo
+      - restore_cache:
+          key: ahorcado-{{ .Branch }}-{{ checksum "package.json" }}
+      - run: npm install
+      - save_cache:
+          key: ahorcado-{{ .Branch }}-{{ checksum "package.json" }}
+          paths:
+            - "node_modules"
+      - run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
+      - run: npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
