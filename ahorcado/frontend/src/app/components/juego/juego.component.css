@@ -1,0 +1,27 @@
+center {
+    margin: auto;
+    width: 50%;
+
+  }
+.main-div {
+  margin: 10px 0px 10px 0px;
+}
+/* div {
+    border: 5px solid red;
+  }
+*/
+.letter-button {
+  margin: 10px 10px 10px 10px;
+}
+
+.letra-correcta {
+  background-color: #72D568;
+}
+
+.letra-incorrecta {
+  background-color: #D56868;
+}
+
+.letra-no-pulsada {
+  background-color: #469BE6;
+}
