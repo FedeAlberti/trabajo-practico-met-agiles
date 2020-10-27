@@ -37,6 +37,7 @@ export class JuegoComponent implements OnInit {
     this.generarPalabraOculta();
     this.resultado = "";
     this.letrasArriesgadas= [];
+    this.urlImagen = "../../assets/img/0.jpg";
     this.inicializarBotones();
   }
 
