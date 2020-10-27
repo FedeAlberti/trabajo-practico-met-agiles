@@ -1,6 +1,4 @@
-import { calcPossibleSecurityContexts } from '@angular/compiler/src/template_parser/binding_parser';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Validators } from '@angular/forms';
 
 import { JuegoComponent } from './juego.component';
 
@@ -18,43 +16,56 @@ describe('JuegoComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(JuegoComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    fixture.detectChanges(); 
   });
 
-  it('debería empezar juego', () => {
-    expect(component).toBeTruthy();
+  it('debería generar una palabra al azar', () => {
+    let palabra=component.generarPalabraAdivinar();
+    expect(palabra).not.toBeNull();
   });
 
-  //Test para comprobar si se crea una palabra a adivinar.
-  it('debería contener palabra a adivinar', () => {
-    expect(component.palabraAdivinar).toEqual('hola');
+  it('debería generar un nuevo juego', () => {
+    component.generarJuego();
+    
+    expect(component.fallos).toEqual(0);
+    expect(component.palabraAdivinar).toBeTruthy();
+    expect(component.resultado).toEqual("");
+    let cantidaddeletrasiguales = (component.palabraOculta.length === component.palabraAdivinar.length)
+    expect(cantidaddeletrasiguales).toBeTrue();
+    expect(component.letrasArriesgadas).toEqual([]);
+
   });
 
   it('debería contener palabra oculta', () => {
+    component.generarJuego();
     component.generarPalabraOculta();
-    expect(component.palabraOculta).toEqual('----');
+    let cantidaddeletrasiguales = (component.palabraOculta.length === component.palabraAdivinar.length)
+    expect(cantidaddeletrasiguales).toBeTrue();
   });
 
-  it('debería ingresar una letra',() => {
-    let letra = 'a';
+  it('debería ingresar una letra y validarla',() => {
+    component.generarJuego();
+    
+    let letra = component.palabraAdivinar[0];;
     component.ingresarLetra(letra);
-    let bandera = false;
-    bandera = component.letrasArriesgadas.includes(letra);
-    expect(bandera).toBeTruthy();
+    let letraAdivinada = component.palabraAdivinar.includes(letra);
+    expect(letraAdivinada).toBeTruthy();
   })
 
   it('deberia agregar la letra valida a la palabra oculta',() => {
-    let letra = 'a';
-    component.checkLetra(letra);
+    component.generarJuego();
+    
+    let letra = component.palabraAdivinar[0];;
+    component.ingresarLetra(letra);
+    console.log(component.palabraOculta)
     expect(component.palabraOculta).toContain(letra);
   })
 
   it('deberia sumar 1 a la cantidad de fallos',() => {
-    let letra = 'j';
-    let fallosAnterior = component.fallos; 
+    component.generarJuego();
+    let letra = 'Z';
     component.checkLetra(letra);
-    let fallosActuales = component.fallos;
-    expect(fallosActuales).toEqual(1); 
+    expect(component.fallos).toEqual(1); 
   })
 
   it('deberia ganar partida',() => {
