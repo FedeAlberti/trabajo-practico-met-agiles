@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MatConfirmDialogComponent } from '../mat-confirm-dialog/mat-confirm-dialog.component';
 
 @Component({
   selector: 'app-juego',
@@ -8,14 +10,23 @@ import { Component, OnInit } from '@angular/core';
 export class JuegoComponent implements OnInit {
 
 
-  palabrasPosible= ["hola","perro","gato","tero"]
-  palabraAdivinar = "hola";
+  palabrasPosible= ["HOLA","PERRO","GATO","TERO"]
+  palabraAdivinar = "";
   palabraOculta = "";
   letrasArriesgadas= [];
   fallos = 0;
+  urlImagen = "../../assets/img/0.jpg";
   resultado = '';
+  buttons: Array<{letra:string, estado:string}>;
+  readonly LETRAS = [
+    "A", "B", "C", "D", "E", "F", "G",
+    "H", "I", "J", "K", "L", "M", "N",
+    "Ñ", "O", "P", "Q", "R", "S", "T",
+    "U", "V", "W", "X", "Y", "Z"];
 
-  constructor() { }
+  constructor(private dialog:MatDialog) { 
+    this.generarJuego();
+  }
 
   ngOnInit(): void {
   }
@@ -25,7 +36,27 @@ export class JuegoComponent implements OnInit {
     this.palabraAdivinar = this.generarPalabraAdivinar();
     this.generarPalabraOculta();
     this.resultado = "";
-    this.letrasArriesgadas= []
+    this.letrasArriesgadas= [];
+    this.urlImagen = "../../assets/img/0.jpg";
+    this.inicializarBotones();
+  }
+
+  openConfirmDialog(msg) {
+    this.dialog.open(MatConfirmDialogComponent, {
+      width: '390px',
+      disableClose:true,
+      data: {
+        message:msg,
+      }
+    })
+      .afterClosed().subscribe(() => this.generarJuego());
+  }
+
+  inicializarBotones() {
+    this.buttons=[];
+    for (let i = 0; i < this.LETRAS.length; i++) {
+     this.buttons.push({letra: this.LETRAS[i], estado: "letra-no-pulsada"});      
+    }
   }
 
   generarPalabraAdivinar() : string{
@@ -41,47 +72,38 @@ export class JuegoComponent implements OnInit {
   }
 
   //Agregar check letra
-  ingresarLetra(letra) {
-
-    this.letrasArriesgadas.push(letra);
+  ingresarLetra(button) {
+    console.log(this.fallos);
+    this.letrasArriesgadas.push(button.letra);
     let bandera=false;
     for (let index = 0; index < this.palabraAdivinar.length; index++) {
-      if (this.palabraAdivinar[index] === letra) {
+      if (this.palabraAdivinar[index] === button.letra  ) {
         this.palabraOculta = 
           this.palabraOculta.substr(0,index) +
-          letra +
+          button.letra +
           this.palabraOculta.substr(index + 1);
 
         bandera = true;
+        button.estado = "letra-correcta" ;
+        if (this.palabraAdivinar === this.palabraOculta) {
+          this.openConfirmDialog("Has adivinado la palabrar!!!");
+        }
       }
     }
 
-    if (bandera){
-      this.fallos ++
+    if (!bandera){
+      
+      this.fallos ++;
+      button.estado = "letra-incorrecta"; 
+      this.urlImagen = `../../assets/img/${this.fallos}.jpg`;
+      if (this.fallos === 6) {
+        this.openConfirmDialog("Has perdido!");
+      }
     }
 
   }
 
   
-
-  checkLetra(letra) {
-    if(this.palabraAdivinar.includes(letra)) {
-      for (let index = 0; index < this.palabraAdivinar.length; index++) {
-        if (this.palabraAdivinar[index] === letra) {
-          this.palabraOculta = 
-            this.palabraOculta.substr(0,index) +
-            letra +
-            this.palabraOculta.substr(index + 1);
-        }
-        
-      }
-    }
-    else {
-      this.fallos ++;
-    }
-      //Agregar checkear resultado.
-
-  }
 
   checkResultado() {
     if(this.fallos === 6) {
