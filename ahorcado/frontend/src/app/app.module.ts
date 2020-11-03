@@ -7,13 +7,15 @@ import { JuegoComponent } from './components/juego/juego.component';
 import { MatConfirmDialogComponent } from './components/mat-confirm-dialog/mat-confirm-dialog.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
+import { HorcaComponent } from './components/juego/horca/horca.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TestingExampleComponent,
     JuegoComponent,
-    MatConfirmDialogComponent
+    MatConfirmDialogComponent,
+    HorcaComponent
   ],
   imports: [
     BrowserModule,

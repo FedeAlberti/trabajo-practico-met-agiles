@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+
 import { MatConfirmDialogComponent } from '../mat-confirm-dialog/mat-confirm-dialog.component';
 
 @Component({
@@ -15,7 +16,6 @@ export class JuegoComponent implements OnInit {
   palabraOculta = "";
   letrasArriesgadas= [];
   fallos = 0;
-  urlImagen = "../../assets/img/0.jpg";
   resultado = '';
   buttons: Array<{letra:string, estado:string}>;
   readonly LETRAS = [
@@ -37,7 +37,6 @@ export class JuegoComponent implements OnInit {
     this.generarPalabraOculta();
     this.resultado = "";
     this.letrasArriesgadas= [];
-    this.urlImagen = "../../assets/img/0.jpg";
     this.inicializarBotones();
   }
 
@@ -54,9 +53,11 @@ export class JuegoComponent implements OnInit {
 
   inicializarBotones() {
     this.buttons=[];
-    for (let i = 0; i < this.LETRAS.length; i++) {
-     this.buttons.push({letra: this.LETRAS[i], estado: "letra-no-pulsada"});      
-    }
+    
+    this.LETRAS.forEach(letra => {
+      this.buttons.push({letra: letra, estado: "letra-no-pulsada"});      
+    });
+
   }
 
   generarPalabraAdivinar() : string{
@@ -66,16 +67,17 @@ export class JuegoComponent implements OnInit {
 
   generarPalabraOculta(){
     this.palabraOculta="";
+    
     for (let i = 0; i < this.palabraAdivinar.length; i++) { 
-      this.palabraOculta += "-";      
+      this.palabraOculta += "_";      
     }
   }
 
-  //Agregar check letra
   ingresarLetra(button) {
-    console.log(this.fallos);
+
     this.letrasArriesgadas.push(button.letra);
     let bandera=false;
+    
     for (let index = 0; index < this.palabraAdivinar.length; index++) {
       if (this.palabraAdivinar[index] === button.letra  ) {
         this.palabraOculta = 
@@ -94,8 +96,9 @@ export class JuegoComponent implements OnInit {
     if (!bandera){
       
       this.fallos ++;
+      debugger;
       button.estado = "letra-incorrecta"; 
-      this.urlImagen = `../../assets/img/${this.fallos}.jpg`;
+      
       if (this.fallos === 6) {
         this.openConfirmDialog("Has perdido!");
       }

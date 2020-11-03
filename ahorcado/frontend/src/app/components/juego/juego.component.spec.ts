@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { JuegoComponent } from './juego.component';
 
@@ -8,7 +9,8 @@ describe('JuegoComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ JuegoComponent ]
+      declarations: [ JuegoComponent ],
+      imports: [MatDialogModule]
     })
     .compileComponents();
   }));
@@ -64,7 +66,7 @@ describe('JuegoComponent', () => {
   it('deberia sumar 1 a la cantidad de fallos',() => {
     component.generarJuego();
     let letra = 'Z';
-    component.checkLetra(letra);
+    component.ingresarLetra(letra);
     expect(component.fallos).toEqual(1); 
   })
 
