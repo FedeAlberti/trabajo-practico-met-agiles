@@ -1,3 +1,4 @@
+import { isGeneratedFile } from '@angular/compiler/src/aot/util';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -17,7 +18,7 @@ export class JuegoComponent implements OnInit {
   letrasArriesgadas= [];
   fallos = 0;
   resultado = '';
-  buttons: Array<{letra:string, estado:string}>;
+  buttons: Array<{letra:string, estado:string, bloqueado: boolean}>;
   readonly LETRAS = [
     "A", "B", "C", "D", "E", "F", "G",
     "H", "I", "J", "K", "L", "M", "N",
@@ -54,8 +55,10 @@ export class JuegoComponent implements OnInit {
   inicializarBotones() {
     this.buttons=[];
     
+
+
     this.LETRAS.forEach(letra => {
-      this.buttons.push({letra: letra, estado: "letra-no-pulsada"});      
+      this.buttons.push({letra: letra, estado: "letra-no-pulsada", bloqueado: false });      
     });
 
   }
@@ -73,7 +76,81 @@ export class JuegoComponent implements OnInit {
     }
   }
 
+  PresionarBoton(button){
+
+    if(button.bloqueado)
+    return
+
+    const resp = this.CoincideLetra(button.letra)
+
+    this.ButtonChange(resp, button);
+
+    this.CheckResultado()
+
+    this.CartelResultado()
+
+  }
+
+  private ButtonChange(resp: boolean, button: any) {
+    if (resp) {
+      button.bloqueado = true;
+      button.estado = "letra-correcta";
+    }
+    else {
+      button.estado = "letra-incorrecta";
+      button.bloqueado = true;
+    }
+  }
+
+  private CartelResultado(){
+    if (this.resultado === 'Win') {
+      this.openConfirmDialog("Has adivinado la palabrar!!!");
+    }
+
+    if (this.resultado === 'Lose') {
+      this.openConfirmDialog("Has perdido!");
+    }
+  }
+  
+  public CheckResultado() {
+    if(this.fallos === 6) {
+      this.resultado = 'Lose';
+    }
+    if(this.palabraOculta === this.palabraAdivinar) {
+      this.resultado = 'Win';
+    }
+  }
+
+  public CoincideLetra(letra:string):boolean{
+
+    this.letrasArriesgadas.push(letra)
+    
+    let bandera=true;
+
+    for (let index = 0; index < this.palabraAdivinar.length; index++) {
+      if (this.palabraAdivinar[index] === letra  ) {
+        this.palabraOculta = 
+          this.palabraOculta.substr(0,index) +
+          letra +
+          this.palabraOculta.substr(index + 1);
+
+        bandera = false;
+      }
+    }
+
+    if (bandera){
+      this.fallos ++;
+    }
+
+    return bandera
+
+  }
+
   ingresarLetra(button) {
+
+    debugger;
+    if(button.bloqueado)
+      return
 
     this.letrasArriesgadas.push(button.letra);
     let bandera=false;
@@ -86,7 +163,9 @@ export class JuegoComponent implements OnInit {
           this.palabraOculta.substr(index + 1);
 
         bandera = true;
+        button.bloqueado = true;
         button.estado = "letra-correcta" ;
+
         if (this.palabraAdivinar === this.palabraOculta) {
           this.openConfirmDialog("Has adivinado la palabrar!!!");
         }
@@ -96,26 +175,13 @@ export class JuegoComponent implements OnInit {
     if (!bandera){
       
       this.fallos ++;
-      debugger;
       button.estado = "letra-incorrecta"; 
-      
+      button.bloqueado = true;
       if (this.fallos === 6) {
         this.openConfirmDialog("Has perdido!");
       }
     }
 
   }
-
-  
-
-  checkResultado() {
-    if(this.fallos === 6) {
-      this.resultado = 'Lose';
-    }
-    if(this.palabraOculta === this.palabraAdivinar) {
-      this.resultado = 'Win';
-    }
-  }
-
 
 }

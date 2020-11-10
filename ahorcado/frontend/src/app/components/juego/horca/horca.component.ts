@@ -15,12 +15,9 @@ export class HorcaComponent implements OnInit {
 
   ngOnInit(): void {
     this.urlImagen = "../../assets/img/0.jpg";
-    debugger;
   }
 
-  ngOnChanges(changes: any):void{
-    console.log(changes);
-    debugger;
+  ngOnChanges(changes: any):void{;
     this.urlImagen= "../../assets/img/"+this.fallos+".jpg"
   }
 

@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatDialogModule } from '@angular/material/dialog';
+import { HorcaComponent } from './horca/horca.component';
 
 import { JuegoComponent } from './juego.component';
 
@@ -9,7 +10,7 @@ describe('JuegoComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ JuegoComponent ],
+      declarations: [ JuegoComponent, HorcaComponent ],
       imports: [MatDialogModule]
     })
     .compileComponents();
@@ -49,7 +50,8 @@ describe('JuegoComponent', () => {
     component.generarJuego();
     
     let letra = component.palabraAdivinar[0];;
-    component.ingresarLetra(letra);
+    component.CoincideLetra(letra);
+
     let letraAdivinada = component.palabraAdivinar.includes(letra);
     expect(letraAdivinada).toBeTruthy();
   })
@@ -58,7 +60,7 @@ describe('JuegoComponent', () => {
     component.generarJuego();
     
     let letra = component.palabraAdivinar[0];;
-    component.ingresarLetra(letra);
+    component.CoincideLetra(letra);
     console.log(component.palabraOculta)
     expect(component.palabraOculta).toContain(letra);
   })
@@ -66,19 +68,19 @@ describe('JuegoComponent', () => {
   it('deberia sumar 1 a la cantidad de fallos',() => {
     component.generarJuego();
     let letra = 'Z';
-    component.ingresarLetra(letra);
+    component.CoincideLetra(letra);
     expect(component.fallos).toEqual(1); 
   })
 
   it('deberia ganar partida',() => {
     component.palabraOculta = component.palabraAdivinar;
-    component.checkResultado();
+    component.CheckResultado();
     expect(component.resultado).toEqual('Win'); 
   })
 
   it('deberia perder partida',() => {
     component.fallos = 6;
-    component.checkResultado();
+    component.CheckResultado();
     expect(component.resultado).toEqual('Lose'); 
   })
 

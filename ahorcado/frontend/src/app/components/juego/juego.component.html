@@ -5,7 +5,7 @@
     <div class="container">
         
             <div class="col l6 m6 s6 center-align">
-                <a [ngClass]="button.estado" *ngFor="let button of buttons" (click)="ingresarLetra(button)" class="btn-floating btn-large waves-effect waves-light">{{button.letra}}</a>
+                <button [ngClass]="button.estado"  *ngFor="let button of buttons" (click)="PresionarBoton(button)" class="btn-floating btn-large waves-effect waves-light">{{button.letra}}</button>
             </div>
         
     </div>
