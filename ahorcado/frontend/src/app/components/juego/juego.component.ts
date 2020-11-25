@@ -77,7 +77,6 @@ export class JuegoComponent implements OnInit {
   }
 
   PresionarBoton(button){
-
     if(button.bloqueado)
     return
 

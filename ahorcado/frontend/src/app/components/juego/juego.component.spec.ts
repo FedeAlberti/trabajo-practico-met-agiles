@@ -84,4 +84,40 @@ describe('JuegoComponent', () => {
     expect(component.resultado).toEqual('Lose'); 
   })
 
+  /* 
+    Tests de Front-End
+  */
+  it('deberia cambiar el color del boton', () =>{
+    let prop_letras_correctas = 0;
+    let prop_letras_incorrectas = 0;
+    let prop_letras_correctas_nuevas = 0;
+    let prop_letras_incorrectas_nuevas = 0;
+
+    component.buttons.forEach(button => {
+      if(button.estado === "letra-correcta")
+      prop_letras_correctas ++;
+      else prop_letras_incorrectas ++;
+    }) 
+    var boton = {
+      bloqueado: true,
+      estado: "letra-correcta",
+      letra: "C"
+    }
+    component.PresionarBoton(boton);
+  
+    component.buttons.forEach(button => {
+        if(button.estado === "letra-correcta")
+          prop_letras_correctas_nuevas ++;
+        else prop_letras_incorrectas_nuevas ++;
+    })
+
+  if(component.palabraAdivinar.includes(boton.letra))
+    expect(prop_letras_correctas < prop_letras_correctas_nuevas && prop_letras_incorrectas == prop_letras_incorrectas_nuevas).toBeTruthy;
+  else
+    expect(prop_letras_correctas < prop_letras_correctas_nuevas && prop_letras_incorrectas == prop_letras_incorrectas_nuevas).toBeFalsy;
+  })
+  
 });
+
+
+ 
