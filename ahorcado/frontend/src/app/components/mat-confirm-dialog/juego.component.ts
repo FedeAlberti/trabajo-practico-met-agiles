@@ -1,6 +1,5 @@
 import { isGeneratedFile } from '@angular/compiler/src/aot/util';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 
 import { MatConfirmDialogComponent } from '../mat-confirm-dialog/mat-confirm-dialog.component';
@@ -26,10 +25,6 @@ export class JuegoComponent implements OnInit {
     "Ñ", "O", "P", "Q", "R", "S", "T",
     "U", "V", "W", "X", "Y", "Z"];
 
-  arriesgarForm = new FormGroup({
-    palabra: new FormControl('',Validators.required),
-  })
-
   constructor(private dialog:MatDialog) { 
     this.generarJuego();
   }
@@ -44,9 +39,6 @@ export class JuegoComponent implements OnInit {
     this.resultado = "";
     this.letrasArriesgadas= [];
     this.inicializarBotones();
-    this.arriesgarForm.patchValue({
-      palabra: ''
-    });
   }
 
   openConfirmDialog(msg,modo) {
@@ -190,15 +182,6 @@ export class JuegoComponent implements OnInit {
       }
     }
 
-  }
-
-  arriesgar() : void {
-    if(this.arriesgarForm.controls.palabra.value.toUpperCase() === this.palabraAdivinar) {
-      this.openConfirmDialog("Has adivinado la palabrar!!!","win");
-    }
-    else {
-      this.openConfirmDialog("Has perdido!","lose");
-    }
   }
 
 }

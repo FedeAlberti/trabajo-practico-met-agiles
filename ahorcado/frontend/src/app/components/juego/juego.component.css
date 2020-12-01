@@ -25,3 +25,11 @@ center {
 .letra-no-pulsada {
   background-color: #469BE6;
 }
+
+.separation {
+  margin-left: 20px;
+}
+
+.size {
+  height: 70px;
+}
