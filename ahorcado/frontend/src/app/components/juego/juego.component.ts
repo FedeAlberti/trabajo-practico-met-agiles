@@ -41,12 +41,13 @@ export class JuegoComponent implements OnInit {
     this.inicializarBotones();
   }
 
-  openConfirmDialog(msg) {
+  openConfirmDialog(msg,modo) {
     this.dialog.open(MatConfirmDialogComponent, {
       width: '390px',
       disableClose:true,
       data: {
         message:msg,
+        modo:modo,
       }
     })
       .afterClosed().subscribe(() => this.generarJuego());
@@ -103,11 +104,11 @@ export class JuegoComponent implements OnInit {
 
   private CartelResultado(){
     if (this.resultado === 'Win') {
-      this.openConfirmDialog("Has adivinado la palabrar!!!");
+      this.openConfirmDialog("Has adivinado la palabra!!!","win");
     }
 
     if (this.resultado === 'Lose') {
-      this.openConfirmDialog("Has perdido!");
+      this.openConfirmDialog("Has perdido!!!","lose");
     }
   }
   
@@ -166,7 +167,7 @@ export class JuegoComponent implements OnInit {
         button.estado = "letra-correcta" ;
 
         if (this.palabraAdivinar === this.palabraOculta) {
-          this.openConfirmDialog("Has adivinado la palabrar!!!");
+          this.openConfirmDialog("Has adivinado la palabrar!!!","win");
         }
       }
     }
@@ -177,7 +178,7 @@ export class JuegoComponent implements OnInit {
       button.estado = "letra-incorrecta"; 
       button.bloqueado = true;
       if (this.fallos === 6) {
-        this.openConfirmDialog("Has perdido!");
+        this.openConfirmDialog("Has perdido!","lose");
       }
     }
 

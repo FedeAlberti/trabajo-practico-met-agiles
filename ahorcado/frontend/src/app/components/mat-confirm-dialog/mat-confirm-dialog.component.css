@@ -6,3 +6,20 @@ html,body {
 .dialog {
     min-height: 100%;
 }
+
+.img-notify {
+    width: 200px; height: 200px;
+}
+
+.win {
+    color: #388e3c ;
+}
+
+.lose {
+    color: #c62828 ;
+}
+
+.action-text {
+    display: inline;
+    margin-right: 20px;
+}
