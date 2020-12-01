@@ -8,6 +8,7 @@ import { MatConfirmDialogComponent } from './components/mat-confirm-dialog/mat-c
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 import { HorcaComponent } from './components/juego/horca/horca.component';
+import { NavBarComponent } from './components/nav-bar/nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { HorcaComponent } from './components/juego/horca/horca.component';
     TestingExampleComponent,
     JuegoComponent,
     MatConfirmDialogComponent,
-    HorcaComponent
+    HorcaComponent,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,
