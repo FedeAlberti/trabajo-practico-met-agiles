@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChange } from '@angular/core';
 
 @Component({
   selector: 'app-horca',
@@ -17,7 +17,7 @@ export class HorcaComponent implements OnInit {
     this.urlImagen = "../../assets/img/0.jpg";
   }
 
-  ngOnChanges(changes: any):void{;
+  ngOnChanges():void{
     this.urlImagen= "../../assets/img/"+this.fallos+".jpg";
   }
 

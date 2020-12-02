@@ -4,6 +4,7 @@ import { JuegoComponent } from '../juego.component';
 import { HorcaComponent } from './horca.component';
 
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { SimpleChange } from '@angular/core';
 
 
 describe('HorcaComponent', () => {
@@ -49,5 +50,17 @@ describe('HorcaComponent', () => {
       expect(url_imagen_horca_nueva.match(url_imagen_horca)).toBeTruthy;
     else expect(url_imagen_horca_nueva.match(url_imagen_horca)).toBeTruthy;
   })
+
+/* 
+  ACCEPTANCE TESTS
+*/
+
+it('debería mostrar el cuerpo entero del ahorcado', () => {
+  let fallos_esperados = 6;
+  component.fallos = fallos_esperados;
+  component.ngOnChanges()
+  console.log(component.urlImagen)
+  expect(component.urlImagen).toEqual("../../assets/img/6.jpg");
+})
 
 });
