@@ -1,17 +1,24 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatDialogModule } from '@angular/material/dialog';
 import { HorcaComponent } from './horca/horca.component';
+import { FormControl, FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 import { JuegoComponent } from './juego.component';
+import { MatConfirmDialogComponent } from '../mat-confirm-dialog/mat-confirm-dialog.component';
 
 describe('JuegoComponent', () => {
   let component: JuegoComponent;
+  let dialog: MatConfirmDialogComponent;
   let fixture: ComponentFixture<JuegoComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ JuegoComponent, HorcaComponent ],
-      imports: [MatDialogModule]
+      declarations: [ JuegoComponent, HorcaComponent, MatConfirmDialogComponent ],
+      imports: [MatDialogModule, BrowserAnimationsModule, ReactiveFormsModule]
     })
     .compileComponents();
   }));
@@ -82,6 +89,19 @@ describe('JuegoComponent', () => {
     component.fallos = 6;
     component.CheckResultado();
     expect(component.resultado).toEqual('Lose'); 
+  })
+
+  it('debería arriesgar palabra correcta y ganar la partida', () => {
+    component.arriesgarForm.patchValue({palabra: component.palabraAdivinar});
+    component.arriesgar();
+    expect(component.resultado).toEqual('Win');
+  })
+
+  
+  it('debería arriesgar palabra correcta y ganar la partida', () => {
+    component.arriesgarForm.patchValue({palabra: 'palabra-incorrecta'});
+    component.arriesgar();
+    expect(component.resultado).toEqual('Lose');
   })
 
   /* 

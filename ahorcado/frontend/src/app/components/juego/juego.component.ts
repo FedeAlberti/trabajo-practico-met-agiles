@@ -154,49 +154,13 @@ export class JuegoComponent implements OnInit {
 
   }
 
-  ingresarLetra(button) {
-
-    debugger;
-    if(button.bloqueado)
-      return
-
-    this.letrasArriesgadas.push(button.letra);
-    let bandera=false;
-    
-    for (let index = 0; index < this.palabraAdivinar.length; index++) {
-      if (this.palabraAdivinar[index] === button.letra  ) {
-        this.palabraOculta = 
-          this.palabraOculta.substr(0,index) +
-          button.letra +
-          this.palabraOculta.substr(index + 1);
-
-        bandera = true;
-        button.bloqueado = true;
-        button.estado = "letra-correcta" ;
-
-        if (this.palabraAdivinar === this.palabraOculta) {
-          this.openConfirmDialog("Has adivinado la palabrar!!!","win");
-        }
-      }
-    }
-
-    if (!bandera){
-      
-      this.fallos ++;
-      button.estado = "letra-incorrecta"; 
-      button.bloqueado = true;
-      if (this.fallos === 6) {
-        this.openConfirmDialog("Has perdido!","lose");
-      }
-    }
-
-  }
-
   arriesgar() : void {
     if(this.arriesgarForm.controls.palabra.value.toUpperCase() === this.palabraAdivinar) {
+      this.resultado = 'Win';
       this.openConfirmDialog("Has adivinado la palabrar!!!","win");
     }
     else {
+      this.resultado = 'Lose';
       this.openConfirmDialog("Has perdido!","lose");
     }
   }
