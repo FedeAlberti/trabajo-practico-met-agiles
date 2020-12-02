@@ -1,26 +1,28 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { HorcaComponent } from './horca/horca.component';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 
-
 import { JuegoComponent } from './juego.component';
 import { MatConfirmDialogComponent } from '../mat-confirm-dialog/mat-confirm-dialog.component';
+import { of } from 'rxjs';
+import { ModuleWithComponentFactories } from '@angular/core';
+
 
 describe('JuegoComponent', () => {
   let component: JuegoComponent;
-  let dialog: MatConfirmDialogComponent;
-  let fixture: ComponentFixture<JuegoComponent>;
+  let fixture: ComponentFixture<JuegoComponent>; 
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ JuegoComponent, HorcaComponent, MatConfirmDialogComponent ],
-      imports: [MatDialogModule, BrowserAnimationsModule, ReactiveFormsModule]
+      imports: [MatDialogModule, BrowserAnimationsModule, ReactiveFormsModule],
+
     })
-    .compileComponents();
+    .compileComponents()
   }));
 
   beforeEach(() => {

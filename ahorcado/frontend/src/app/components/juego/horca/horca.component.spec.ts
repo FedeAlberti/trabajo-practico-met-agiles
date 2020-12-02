@@ -55,7 +55,7 @@ describe('HorcaComponent', () => {
   ACCEPTANCE TESTS
 */
 
-it('debería mostrar el cuerpo entero del ahorcado', () => {
+it('debería mostrar el cuerpo entero del ahorcado al perder', () => {
   let fallos_esperados = 6;
   component.fallos = fallos_esperados;
   component.ngOnChanges()
