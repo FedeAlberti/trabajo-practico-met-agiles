@@ -1,0 +1,25 @@
+<div class="container center-align">
+    <div class="center-align z-depth-3 grey lighten-5 row menu-container">
+        <h1 class="nickname-title">Ingrese su Nickname</h1>
+        <form  class="col 12"[formGroup]="nicknameForm">
+            <div class="row">
+                <div class="input-field col 6">
+                    <input id="user" type="text" formControlName="userName">
+                    <label for="user">Nickname</label>
+                </div>
+                <div class="col 6 btn-jugar">
+                    <button [disabled]="this.nicknameForm.invalid" 
+                    class="btn pulse waves-effect waves-light purple">
+                    Jugar!
+                  </button>    
+                </div>
+            </div>
+            <div class="row">
+                <em *ngIf="this.nicknameForm.controls.userName.touched && nicknameForm.get('userName').hasError('minlength')">
+                    * Debe contener al menos 4 caracteres.</em>       
+                <em *ngIf="this.nicknameForm.controls.userName.dirty && nicknameForm.get('userName').hasError('maxlength')">
+                    * Debe contener menos de 10 caracteres.</em>     
+            </div>
+        </form>
+    </div>
+</div>

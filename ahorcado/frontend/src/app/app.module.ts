@@ -12,7 +12,8 @@ import { NavBarComponent } from './components/nav-bar/nav-bar/nav-bar.component'
 import { ReactiveFormsModule } from '@angular/forms';
 import { InicioComponent } from './components/inicio/inicio/inicio.component';
 import { AppRoutingModule } from './app-routing.module';
-import { RouterModule, Routes } from '@angular/router'
+import { RouterModule, Routes } from '@angular/router';
+import { NicknameFormComponent } from './components/nickname-form/nickname-form/nickname-form.component'
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { RouterModule, Routes } from '@angular/router'
     MatConfirmDialogComponent,
     HorcaComponent,
     NavBarComponent,
-    InicioComponent
+    InicioComponent,
+    NicknameFormComponent
   ],
   imports: [
     BrowserModule,

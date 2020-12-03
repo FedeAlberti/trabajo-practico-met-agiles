@@ -1,0 +1,21 @@
+.menu-container {
+  display: inline-block; 
+  padding: 32px 48px 0px 48px; 
+  border: 1px solid #EEE;
+  margin: 50px 0px 0px 0px;
+}
+
+.btn-jugar {
+  margin-top: 20px;
+}
+
+.nickname-title {
+  font-family: Roboto;
+  font-weight: bold;
+}
+
+em {
+  font-weight: bold;
+  color: #c62828 ;
+  font-size: 15px;
+}
