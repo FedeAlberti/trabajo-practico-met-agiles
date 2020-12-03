@@ -9,8 +9,10 @@ import { NicknameFormComponent } from './components/nickname-form/nickname-form/
 const routes: Routes = [
   { path: 'inicio', component: InicioComponent },
   { path: 'juego', component: JuegoComponent},
-  { path: 'nickname', component: NicknameFormComponent},
+  { path: 'nickname/:dificultad', component: NicknameFormComponent},
   { path: '', redirectTo: 'inicio', pathMatch: 'full' },
+  { path: '**', redirectTo: 'inicio', pathMatch: 'full' },
+  
   
 
 

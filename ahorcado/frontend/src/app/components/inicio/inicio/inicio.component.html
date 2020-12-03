@@ -6,14 +6,16 @@
             <img  width="300px" heigth="150px" src="{{this.urlImagen}}">
         </div>
         <div class="row center-align">
-            <a class="waves-effect waves-light btn btn-large green darken-1 col 12">
+            <a class="waves-effect waves-light btn btn-large green darken-1 col 12"
+                [routerLink]="['/nickname','facil']">
                 <i class="material-icons right ">star_border</i>
                 <i class="material-icons right ">star_border</i>
                 <i class="material-icons right">star</i>
                 Fácil</a>
         </div>
         <div class="row center-align">
-            <a class="waves-effect waves-light btn btn-large yellow darken-1 col 12">
+            <a class="waves-effect waves-light btn btn-large yellow darken-1 col 12"
+            [routerLink]="['/nickname','medio']">
                 <i class="material-icons right ">star_border</i>
                 <i class="material-icons right">star</i>
                 <i class="material-icons right">star</i>
@@ -21,7 +23,8 @@
                 Medio</a>
         </div>
         <div class="row center-align">
-            <a class="waves-effect waves-light btn btn-large red darken-1 col 12">
+            <a class="waves-effect waves-light btn btn-large red darken-1 col 12"
+            [routerLink]="['/nickname','dificil']">
                 <i class="material-icons right">star</i>
                 <i class="material-icons right">star</i>
                 <i class="material-icons right">star</i>Difícil</a>
