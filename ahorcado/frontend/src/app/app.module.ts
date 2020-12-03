@@ -10,6 +10,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { HorcaComponent } from './components/juego/horca/horca.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar/nav-bar.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { InicioComponent } from './components/inicio/inicio/inicio.component';
+import { AppRoutingModule } from './app-routing.module';
+import { RouterModule, Routes } from '@angular/router'
 
 @NgModule({
   declarations: [
@@ -18,13 +21,15 @@ import { ReactiveFormsModule } from '@angular/forms';
     JuegoComponent,
     MatConfirmDialogComponent,
     HorcaComponent,
-    NavBarComponent
+    NavBarComponent,
+    InicioComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MatDialogModule,
     ReactiveFormsModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
