@@ -195,7 +195,7 @@ export class JuegoComponent implements OnInit {
   arriesgar() : void {
     if(this.arriesgarForm.controls.palabra.value.toUpperCase() === this.palabraAdivinar) {
       this.resultado = 'Win';
-      this.gameService.actualizarPuntaje(this.dificultad);
+      this.gameService.actualizarPuntaje(this.dificultad,true);
       this.openConfirmDialog("Has adivinado la palabrar!!!","win");
     }
     else {

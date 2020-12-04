@@ -27,15 +27,18 @@ export class GameService {
     this.puntajes = [
         {
           nivel: 'facil',
-          aciertos: 0
+          aciertos: 0,
+          fallos: 0,
         },      
         {
           nivel: 'medio',
-          aciertos: 0
+          aciertos: 0,
+          fallos: 0,
         },
         {
           nivel: 'dificil',
-          aciertos: 0
+          aciertos: 0,
+          fallos: 0,
         }
     ];
     localStorage.setItem('puntajes',JSON.stringify(this.puntajes));
@@ -45,22 +48,31 @@ export class GameService {
     this.puntajes = JSON.parse(localStorage.getItem('puntajes'));
   }
 
-  actualizarPuntaje(dificultad: any) : void {
+  actualizarPuntaje(dificultad: any, acierto) : void {
     this.getPuntajeActual();
     switch (dificultad) {
       case 'facil':
-        this.puntajes[0].aciertos += 1;
+        this.setPuntaje(acierto,0);
         break;
       case 'medio':
-        this.puntajes[1].aciertos += 1;
+        this.setPuntaje(acierto,1);
         break;
       case 'dificil':
-        this.puntajes[2].aciertos += 1;
+        this.setPuntaje(acierto,2);
         break;
       default:
         break;
     }
     localStorage.setItem('puntajes',JSON.stringify(this.puntajes));;
+  }
+
+  setPuntaje(acierto,dificultad){
+    if(acierto){
+      this.puntajes[dificultad].aciertos += 1;
+    }
+    else {
+      this.puntajes[dificultad].fallos +=1;
+    }      
   }
 
 }

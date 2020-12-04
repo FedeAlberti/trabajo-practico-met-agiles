@@ -13,7 +13,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { InicioComponent } from './components/inicio/inicio/inicio.component';
 import { AppRoutingModule } from './app-routing.module';
 import { RouterModule, Routes } from '@angular/router';
-import { NicknameFormComponent } from './components/nickname-form/nickname-form/nickname-form.component'
+import { NicknameFormComponent } from './components/nickname-form/nickname-form/nickname-form.component';
+import { TablaPuntajesComponent } from './components/tabla-puntajes/tabla-puntajes.component'
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { NicknameFormComponent } from './components/nickname-form/nickname-form/
     HorcaComponent,
     NavBarComponent,
     InicioComponent,
-    NicknameFormComponent
+    NicknameFormComponent,
+    TablaPuntajesComponent
   ],
   imports: [
     BrowserModule,

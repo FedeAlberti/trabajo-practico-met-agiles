@@ -29,7 +29,7 @@ describe('GameService', () => {
     let nivel = 'facil';
     service.getPuntajeActual();
     let puntajes = service.puntajes;
-    service.actualizarPuntaje(nivel);
+    service.actualizarPuntaje(nivel,true);
     expect(service.puntajes[0].aciertos - puntajes[0].aciertos).toEqual(1);
     
   })
