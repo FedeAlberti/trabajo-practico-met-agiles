@@ -34,4 +34,14 @@ describe('GameService', () => {
     
   })
 
+  it('debería devolver falso si el usuario no está guardado', () => {
+    localStorage.removeItem('usuario');
+    expect(service.checkUsuario()).toBeFalse();
+  })
+
+  it('debería devolver verdadero si el usuario está guardado', () => {
+    service.guardarUsuario('foo');
+    expect(service.checkUsuario()).toBeTrue();
+  })
+
 });

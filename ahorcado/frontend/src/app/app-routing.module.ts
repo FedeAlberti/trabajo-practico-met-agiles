@@ -9,13 +9,9 @@ import { NicknameFormComponent } from './components/nickname-form/nickname-form/
 const routes: Routes = [
   { path: 'inicio', component: InicioComponent },
   { path: 'juego/:dificultad', component: JuegoComponent},
-  { path: 'nickname/:dificultad', component: NicknameFormComponent},
+  { path: 'nickname', component: NicknameFormComponent},
   { path: '', redirectTo: 'inicio', pathMatch: 'full' },
-  { path: '**', redirectTo: 'inicio', pathMatch: 'full' },
-  
-  
-
-
+  { path: '**', redirectTo: 'inicio', pathMatch: 'full' },  
 ];
 
 @NgModule({

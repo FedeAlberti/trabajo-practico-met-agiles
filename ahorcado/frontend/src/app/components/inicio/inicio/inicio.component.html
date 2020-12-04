@@ -7,7 +7,7 @@
         </div>
         <div class="row center-align">
             <a class="waves-effect waves-light btn btn-large green darken-1 col 12"
-                [routerLink]="['/nickname','facil']">
+                (click)="goToGame('facil')">
                 <i class="material-icons right ">star_border</i>
                 <i class="material-icons right ">star_border</i>
                 <i class="material-icons right">star</i>
@@ -15,7 +15,7 @@
         </div>
         <div class="row center-align">
             <a class="waves-effect waves-light btn btn-large yellow darken-1 col 12"
-            [routerLink]="['/nickname','medio']">
+             (click)="goToGame('medio')">
                 <i class="material-icons right ">star_border</i>
                 <i class="material-icons right">star</i>
                 <i class="material-icons right">star</i>
@@ -24,7 +24,7 @@
         </div>
         <div class="row center-align">
             <a class="waves-effect waves-light btn btn-large red darken-1 col 12"
-            [routerLink]="['/nickname','dificil']">
+            (click)="goToGame('dificil')">
                 <i class="material-icons right">star</i>
                 <i class="material-icons right">star</i>
                 <i class="material-icons right">star</i>Difícil</a>

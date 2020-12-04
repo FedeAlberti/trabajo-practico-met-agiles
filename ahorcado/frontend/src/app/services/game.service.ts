@@ -14,6 +14,15 @@ export class GameService {
     this.inicializarPuntaje();
   }
 
+  checkUsuario() : boolean {
+    if(localStorage.getItem('usuario')) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
   inicializarPuntaje() {
     this.puntajes = [
         {

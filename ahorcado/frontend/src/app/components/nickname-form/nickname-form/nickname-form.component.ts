@@ -21,20 +21,7 @@ export class NicknameFormComponent implements OnInit {
     private gameService: GameService) { }
     
   ngOnInit(): void {
-    switch (this.route.snapshot.paramMap.get('dificultad')) {
-      case 'facil':
-        this.dificultad === 'facil';     
-        break;
-      case 'medio':
-        this.dificultad === 'medio';
-        break;
-      case 'dificil':
-        this.dificultad === 'dificil';
-        break
-      default:
-        this.router.navigateByUrl('');
-        break;
-    }
+  
   }
 
   guardarUsuario() {
