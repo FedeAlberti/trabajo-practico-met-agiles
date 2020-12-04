@@ -8,6 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./nickname-form.component.css']
 })
 export class NicknameFormComponent implements OnInit {
+  
 
   dificultad: any;
   nicknameForm = new FormGroup({
@@ -33,6 +34,14 @@ export class NicknameFormComponent implements OnInit {
         break;
     }
   }
+
+  guardarUsuario() {
+    let usuario = this.nicknameForm.controls.userName.value;
+    localStorage.setItem('usuario',usuario);
+    this.router.navigateByUrl('');
+  }
+
+
 
 
 }

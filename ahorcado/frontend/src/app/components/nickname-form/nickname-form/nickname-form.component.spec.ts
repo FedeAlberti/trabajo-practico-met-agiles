@@ -1,4 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterModule } from '@angular/router';
+import {RouterTestingModule} from '@angular/router/testing';
 
 import { NicknameFormComponent } from './nickname-form.component';
 
@@ -8,7 +10,8 @@ describe('NicknameFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NicknameFormComponent ]
+      declarations: [ NicknameFormComponent ],
+      imports: [RouterTestingModule],
     })
     .compileComponents();
   }));
@@ -22,4 +25,15 @@ describe('NicknameFormComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('debería guardar el nickname del usuario', () => {
+    
+    component.nicknameForm.patchValue({
+      userName: 'foo'
+    });
+    component.guardarUsuario();
+    let usuario = localStorage.getItem('usuario');
+    expect(usuario).toBeTruthy();
+  })
+
 });

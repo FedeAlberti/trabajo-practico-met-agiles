@@ -12,6 +12,32 @@ import { MatConfirmDialogComponent } from '../mat-confirm-dialog/mat-confirm-dia
 })
 export class JuegoComponent implements OnInit {
 
+  palabrasDificiles = [
+    "ARTERIOSCLEROSIS",
+    "WHISKEY",
+    "ELECTROCARDIOGRAMA",
+    "ELECTROENCEFALOGRAFIA",
+    "PISCIS",
+    "ESTERNOCLEIDOMASTOIDEO",
+    "KAYAK"
+  ]
+  palabrasMedias = [
+    "ARTERIA",
+    "COMPUTADORA",
+    "PASTILLA",
+    "JARABE",
+    "BICICLETA",
+    "FLAN",
+    "COLCHONETA"
+  ]
+  palabrasFaciles = [
+    "HOLA",
+    "PERRO",
+    "GATO",
+    "TERO",
+    "BANANA",
+    "ALARMA"
+  ]
 
   palabrasPosible= ["HOLA","PERRO","GATO","TERO"]
   palabraAdivinar = "";
