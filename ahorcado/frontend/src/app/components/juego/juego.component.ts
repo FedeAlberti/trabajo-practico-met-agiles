@@ -150,10 +150,12 @@ export class JuegoComponent implements OnInit {
 
   private CartelResultado(){
     if (this.resultado === 'Win') {
+      this.gameService.actualizarPuntaje(this.dificultad,true);
       this.openConfirmDialog("Has adivinado la palabra!!!","win");
     }
 
     if (this.resultado === 'Lose') {
+      this.gameService.actualizarPuntaje(this.dificultad,false);
       this.openConfirmDialog("Has perdido!!!","lose");
     }
   }
@@ -200,6 +202,7 @@ export class JuegoComponent implements OnInit {
     }
     else {
       this.resultado = 'Lose';
+      this.gameService.actualizarPuntaje(this.dificultad,false);
       this.openConfirmDialog("Has perdido!","lose");
     }
   }
