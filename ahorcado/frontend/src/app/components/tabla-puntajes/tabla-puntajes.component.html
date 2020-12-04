@@ -5,7 +5,7 @@
       <i class="col 4 yellow-text text-darken-2 material-icons medium">stars</i>
    
   </div>
-  <table class="stripped centered">
+  <table class="stripped centered highlight">
     <thead>
       <tr>
           <th>Dificultad<i class="yellow-text text-darken-2 material-icons">show_chart</i></th>
@@ -16,15 +16,17 @@
     </thead>
 
     <tbody>
-      <tr>
-        <td>Facil</td>
-        <td>7</td>
-        <td>3</td>
+      <tr *ngFor="let p of puntajes">
+        <td class="mayuscula">{{p.nivel}}</td>
+        <td>{{p.aciertos}}</td>
+        <td>{{p.fallos}}</td>
+       
         <td>
-            <div class="progress">
-                <div class="determinate" style="width: 70%"></div>
-            </div>
-        </td>
+          <div class="progress grey lighten-1" >
+          <div class="determinate " [ngClass]="validarColor(p)"  [style.width.%]="calcularPromedio(p)"></div>
+          </div>
+      </td>
+      </tr>
     </tbody>
   </table>
 </div>
