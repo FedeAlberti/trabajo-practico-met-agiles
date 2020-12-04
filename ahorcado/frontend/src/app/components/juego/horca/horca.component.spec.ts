@@ -6,6 +6,7 @@ import { HorcaComponent } from './horca.component';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { SimpleChange } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
+import { ActivatedRoute, convertToParamMap } from '@angular/router';
 
 
 describe('HorcaComponent', () => {
@@ -22,7 +23,11 @@ describe('HorcaComponent', () => {
       ],
       providers: [
         { provide: MAT_DIALOG_DATA, useValue: {} },
-        { provide: MatDialog, useValue: {} }
+        { provide: MatDialog, useValue: {} },
+        {
+          provide: ActivatedRoute,
+          useValue : { snapshot: { paramMap: convertToParamMap( { 'dificultad': 'facil' } ) } }
+        }
       ]
     })
     .compileComponents();

@@ -11,16 +11,24 @@ import { MatConfirmDialogComponent } from '../mat-confirm-dialog/mat-confirm-dia
 import { of } from 'rxjs';
 import { ModuleWithComponentFactories } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
+import { ActivatedRoute, convertToParamMap, Router } from '@angular/router';
 
 
 describe('JuegoComponent', () => {
+  const routerSpy = jasmine.createSpyObj('Router',['navigate']);
   let component: JuegoComponent;
   let fixture: ComponentFixture<JuegoComponent>; 
-
+  let activatedRoute :ActivatedRoute;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ JuegoComponent, HorcaComponent, MatConfirmDialogComponent ],
-      imports: [MatDialogModule, BrowserAnimationsModule, ReactiveFormsModule, RouterTestingModule],
+      imports: [MatDialogModule, BrowserAnimationsModule, ReactiveFormsModule,RouterTestingModule],
+      providers: [
+        {
+            provide: ActivatedRoute,
+            useValue : { snapshot: { paramMap: convertToParamMap( { 'dificultad': 'facil' } ) } }
+          }
+      ]
 
     })
     .compileComponents()
@@ -29,16 +37,19 @@ describe('JuegoComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(JuegoComponent);
     component = fixture.componentInstance;
+    activatedRoute
     fixture.detectChanges(); 
   });
 
   it('debería generar una palabra al azar', () => {
+    component.palabrasPosible = ["PALABRAS","PARA","EL","TEST"];
     let palabra=component.generarPalabraAdivinar();
     expect(palabra).not.toBeNull();
   });
 
   it('debería generar un nuevo juego', () => {
     component.generarJuego();
+    console.log(component.palabrasPosible);
     
     expect(component.fallos).toEqual(0);
     expect(component.palabraAdivinar).toBeTruthy();

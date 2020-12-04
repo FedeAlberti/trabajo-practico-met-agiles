@@ -68,9 +68,13 @@ export class JuegoComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.dificultad);
+    
   }
 
   generarJuego(){
+    this.dificultad = this.route.snapshot.paramMap.get('dificultad');
+    this.setDificultad();
     this.fallos = 0;
     this.palabraAdivinar = this.generarPalabraAdivinar();
     this.generarPalabraOculta();
@@ -80,7 +84,7 @@ export class JuegoComponent implements OnInit {
     this.arriesgarForm.patchValue({
       palabra: ''
     });
-    this.setDificultad(this.route.snapshot.paramMap.get('dificultad'));
+    
   }
 
   openConfirmDialog(msg,modo) {
@@ -200,8 +204,8 @@ export class JuegoComponent implements OnInit {
     }
   }
 
-  setDificultad(ruta) {
-    switch (ruta) {
+  setDificultad() {
+    switch (this.dificultad) {
       case 'facil':
         this.dificultad === 'facil';     
         this.palabrasPosible = this.palabrasFaciles;
