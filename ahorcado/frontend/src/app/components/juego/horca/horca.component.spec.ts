@@ -5,6 +5,7 @@ import { HorcaComponent } from './horca.component';
 
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { SimpleChange } from '@angular/core';
+import { RouterTestingModule } from '@angular/router/testing';
 
 
 describe('HorcaComponent', () => {
@@ -16,6 +17,9 @@ describe('HorcaComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ HorcaComponent , JuegoComponent ],
+      imports: [
+        RouterTestingModule
+      ],
       providers: [
         { provide: MAT_DIALOG_DATA, useValue: {} },
         { provide: MatDialog, useValue: {} }

@@ -10,6 +10,7 @@ import { JuegoComponent } from './juego.component';
 import { MatConfirmDialogComponent } from '../mat-confirm-dialog/mat-confirm-dialog.component';
 import { of } from 'rxjs';
 import { ModuleWithComponentFactories } from '@angular/core';
+import { RouterTestingModule } from '@angular/router/testing';
 
 
 describe('JuegoComponent', () => {
@@ -19,7 +20,7 @@ describe('JuegoComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ JuegoComponent, HorcaComponent, MatConfirmDialogComponent ],
-      imports: [MatDialogModule, BrowserAnimationsModule, ReactiveFormsModule],
+      imports: [MatDialogModule, BrowserAnimationsModule, ReactiveFormsModule, RouterTestingModule],
 
     })
     .compileComponents()

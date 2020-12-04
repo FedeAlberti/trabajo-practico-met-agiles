@@ -2,6 +2,8 @@ import { isGeneratedFile } from '@angular/compiler/src/aot/util';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
+import { GameService } from 'src/app/services/game.service';
 
 import { MatConfirmDialogComponent } from '../mat-confirm-dialog/mat-confirm-dialog.component';
 
@@ -11,6 +13,8 @@ import { MatConfirmDialogComponent } from '../mat-confirm-dialog/mat-confirm-dia
   styleUrls: ['./juego.component.css']
 })
 export class JuegoComponent implements OnInit {
+
+  dificultad:any;
 
   palabrasDificiles = [
     "ARTERIOSCLEROSIS",
@@ -39,7 +43,7 @@ export class JuegoComponent implements OnInit {
     "ALARMA"
   ]
 
-  palabrasPosible= ["HOLA","PERRO","GATO","TERO"]
+  palabrasPosible = []; 
   palabraAdivinar = "";
   palabraOculta = "";
   letrasArriesgadas= [];
@@ -56,8 +60,11 @@ export class JuegoComponent implements OnInit {
     palabra: new FormControl('',Validators.required),
   })
 
-  constructor(private dialog:MatDialog) { 
-    this.generarJuego();
+  constructor(private dialog:MatDialog, 
+    private gameService: GameService,
+    private route: ActivatedRoute,
+    private router: Router ) { 
+      this.generarJuego();
   }
 
   ngOnInit(): void {
@@ -73,6 +80,7 @@ export class JuegoComponent implements OnInit {
     this.arriesgarForm.patchValue({
       palabra: ''
     });
+    this.setDificultad(this.route.snapshot.paramMap.get('dificultad'));
   }
 
   openConfirmDialog(msg,modo) {
@@ -183,6 +191,7 @@ export class JuegoComponent implements OnInit {
   arriesgar() : void {
     if(this.arriesgarForm.controls.palabra.value.toUpperCase() === this.palabraAdivinar) {
       this.resultado = 'Win';
+      this.gameService.actualizarPuntaje(this.dificultad);
       this.openConfirmDialog("Has adivinado la palabrar!!!","win");
     }
     else {
@@ -191,4 +200,25 @@ export class JuegoComponent implements OnInit {
     }
   }
 
+  setDificultad(ruta) {
+    switch (ruta) {
+      case 'facil':
+        this.dificultad === 'facil';     
+        this.palabrasPosible = this.palabrasFaciles;
+        break;
+      case 'medio':
+        this.dificultad === 'medio';
+        this.palabrasPosible= this.palabrasMedias;
+        break;
+      case 'dificil':
+        this.dificultad === 'dificil';
+        this.palabrasPosible = this.palabrasDificiles;
+        break
+      default:
+        this.router.navigateByUrl('');
+        break;
+    }
+  }
 }
+  
+

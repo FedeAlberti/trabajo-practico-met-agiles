@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { GameService } from '../../../services/game.service';
 
 @Component({
   selector: 'app-nickname-form',
@@ -16,7 +17,8 @@ export class NicknameFormComponent implements OnInit {
   })
   
   constructor(private route: ActivatedRoute, 
-    private router: Router) { }
+    private router: Router,
+    private gameService: GameService) { }
     
   ngOnInit(): void {
     switch (this.route.snapshot.paramMap.get('dificultad')) {
@@ -37,7 +39,7 @@ export class NicknameFormComponent implements OnInit {
 
   guardarUsuario() {
     let usuario = this.nicknameForm.controls.userName.value;
-    localStorage.setItem('usuario',usuario);
+    this.gameService.guardarUsuario(usuario);
     this.router.navigateByUrl('');
   }
 
