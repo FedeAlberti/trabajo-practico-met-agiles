@@ -26,10 +26,33 @@ center {
   background-color: #469BE6;
 }
 
-.separation {
-  margin-left: 20px;
+
+.btn-input-width {
+  width: 25%;
 }
 
-.size {
-  height: 70px;
+.submit-container{
+  height: 50px;
+  width: auto;
+}
+
+.btn-size {
+  height: 4rem;
+  width: 4rem;
+}
+
+.buttons-container {
+  margin-top:5px ;
+}
+
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  .size{
+    height: 100%;
+  }
+  .btn-size {
+    height: 3rem;
+    width: 3rem;
+  }
+
 }

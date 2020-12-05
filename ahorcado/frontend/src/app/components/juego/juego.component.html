@@ -1,24 +1,23 @@
 <div class="container">
     <app-horca [fallos]= this.fallos [palabraOculta]=this.palabraOculta ></app-horca>
-    <form [formGroup]="arriesgarForm" class="row s12 size">
-        <div class="row">
-            <div class="col s12">
-              <div class="input-field inline left-align">
-                <input formControlName="palabra" type="text" placeholder="Inserte palabra">
-              </div>
+      <div class="container">
+        <form [formGroup]="arriesgarForm" class="col s12">
+          <div class="container">
+            <div style="width: 100%;" class="input-field">
+              <input formControlName="palabra" type="text" placeholder="Inserte palabra">
+            </div>
+            <div class="center-align">
               <button type="submit" [disabled]="this.arriesgarForm.invalid"
-                (click)="this.arriesgar()"class=" separation waves-effect waves-light btn deep-purple darken-4">
+                (click)="this.arriesgar()"
+                class="waves-effect waves-light btn deep-purple darken-4 phone-button  pulse">
                 Arriesga
               </button>
-            </div>  
-        </div>   
-    </form>
-
-    <div class="container">       
-            <div class="col l6 m6 s6 center-align">
-                <button [ngClass]="button.estado"  *ngFor="let button of buttons" (click)="PresionarBoton(button)" class="btn-floating btn-large waves-effect waves-light">{{button.letra}}</button>
-            </div>
-        
-    </div>
-    
+            </div>                
+          </div>   
+        </form>  
+      </div>    
+    <div class="center-align buttons-container">
+      <button [ngClass]="button.estado"  *ngFor="let button of buttons" (click)="PresionarBoton(button)" 
+      class="btn-floating btn-size waves-effect waves-light">{{button.letra}}</button>
+    </div>     
 </div>

@@ -1,5 +1,6 @@
+
 .palabra-oculta {
-    letter-spacing: 10px;
+    letter-spacing: 5px;
     font-size: 40px;
 }
 
@@ -7,6 +8,16 @@
     margin-top: 20px;
 }
 
-.size {
-    height: 150px;
+
+.margin-img {
+    margin: 5px 0px;
 }
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    .palabra-oculta{
+        letter-spacing: 3px;
+        font-size: 20px;
+        font-weight: bold;
+    }
+  }
