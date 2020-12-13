@@ -9,7 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 import { HorcaComponent } from './components/juego/horca/horca.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar/nav-bar.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InicioComponent } from './components/inicio/inicio/inicio.component';
 import { AppRoutingModule } from './app-routing.module';
 import { RouterModule, Routes } from '@angular/router';
@@ -32,6 +32,7 @@ import { TablaPuntajesComponent } from './components/tabla-puntajes/tabla-puntaj
     BrowserModule,
     BrowserAnimationsModule,
     MatDialogModule,
+    FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
   ],

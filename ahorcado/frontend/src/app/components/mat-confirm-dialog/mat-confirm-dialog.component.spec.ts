@@ -36,6 +36,7 @@ describe('MatConfirmDialogComponent', () => {
   
 
   /* ACCEPTANCE TESTS */
+  
   it('debería mostrar imagen de partida ganada', () => {
     let expectedParameter = 'win';
     component.data.modo = expectedParameter;

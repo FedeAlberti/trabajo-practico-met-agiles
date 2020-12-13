@@ -7,6 +7,7 @@ import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { SimpleChange } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ActivatedRoute, convertToParamMap } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 describe('HorcaComponent', () => {
@@ -19,7 +20,9 @@ describe('HorcaComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ HorcaComponent , JuegoComponent ],
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        ReactiveFormsModule,
+        FormsModule
       ],
       providers: [
         { provide: MAT_DIALOG_DATA, useValue: {} },
@@ -68,7 +71,6 @@ it('debería mostrar el cuerpo entero del ahorcado al perder', () => {
   let fallos_esperados = 6;
   component.fallos = fallos_esperados;
   component.ngOnChanges()
-  console.log(component.urlImagen)
   expect(component.urlImagen).toEqual("../../assets/img/6.jpg");
 })
 

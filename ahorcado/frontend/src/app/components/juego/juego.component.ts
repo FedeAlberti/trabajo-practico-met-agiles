@@ -1,4 +1,3 @@
-import { isGeneratedFile } from '@angular/compiler/src/aot/util';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -67,9 +66,7 @@ export class JuegoComponent implements OnInit {
       this.generarJuego();
   }
 
-  ngOnInit(): void {
-    console.log(this.dificultad);
-    
+  ngOnInit(): void {    
   }
 
   generarJuego(){

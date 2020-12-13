@@ -1,15 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { HorcaComponent } from './horca/horca.component';
-import { FormControl, FormGroup } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, FormGroupDirective, FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { JuegoComponent } from './juego.component';
 import { MatConfirmDialogComponent } from '../mat-confirm-dialog/mat-confirm-dialog.component';
-import { of } from 'rxjs';
-import { ModuleWithComponentFactories } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ActivatedRoute, convertToParamMap, Router } from '@angular/router';
 
@@ -21,8 +17,8 @@ describe('JuegoComponent', () => {
   let activatedRoute :ActivatedRoute;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ JuegoComponent, HorcaComponent, MatConfirmDialogComponent ],
-      imports: [MatDialogModule, BrowserAnimationsModule, ReactiveFormsModule,RouterTestingModule],
+      declarations: [ JuegoComponent, HorcaComponent, MatConfirmDialogComponent, FormGroupDirective ],
+      imports: [MatDialogModule, BrowserAnimationsModule, FormsModule, ReactiveFormsModule,RouterTestingModule],
       providers: [
         {
             provide: ActivatedRoute,
@@ -49,7 +45,6 @@ describe('JuegoComponent', () => {
 
   it('debería generar un nuevo juego', () => {
     component.generarJuego();
-    console.log(component.palabrasPosible);
     
     expect(component.fallos).toEqual(0);
     expect(component.palabraAdivinar).toBeTruthy();
@@ -82,7 +77,6 @@ describe('JuegoComponent', () => {
     
     let letra = component.palabraAdivinar[0];;
     component.CoincideLetra(letra);
-    console.log(component.palabraOculta)
     expect(component.palabraOculta).toContain(letra);
   })
 

@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import {RouterTestingModule} from '@angular/router/testing';
 
@@ -11,7 +12,7 @@ describe('NicknameFormComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ NicknameFormComponent ],
-      imports: [RouterTestingModule],
+      imports: [RouterTestingModule, ReactiveFormsModule,FormsModule],
     })
     .compileComponents();
   }));
