@@ -10,7 +10,7 @@ export class TablaPuntajesComponent implements OnInit {
 
   puntajes = [];
 
-  constructor(private gameService:GameService) { }
+  constructor(private gameService: GameService) { }
 
   ngOnInit(): void {
     this.gameService.getPuntajeActual();
@@ -19,19 +19,19 @@ export class TablaPuntajesComponent implements OnInit {
 
 
   calcularPorcentaje(p) {
-    return ((p.aciertos)/(p.aciertos + p.fallos) * 100)
+    return ((p.aciertos) / (p.aciertos + p.fallos) * 100)
   }
 
   validarColor(p) {
     let promedio = this.calcularPorcentaje(p);
-    if( promedio <= 40) {
-      return "red"
-    }
-    else if (promedio <= 70) {
-      return 'yellow'
-    } 
-    else {
-      return 'green'
+
+    switch (true) {
+      case (promedio <= 40):
+        return "red"
+      case (promedio <= 70):
+        return 'yellow'
+      default:
+        return 'green'
     }
 
   }

@@ -18,7 +18,7 @@ describe('HorcaComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HorcaComponent , JuegoComponent ],
+      declarations: [HorcaComponent, JuegoComponent],
       imports: [
         RouterTestingModule,
         ReactiveFormsModule,
@@ -29,11 +29,11 @@ describe('HorcaComponent', () => {
         { provide: MatDialog, useValue: {} },
         {
           provide: ActivatedRoute,
-          useValue : { snapshot: { paramMap: convertToParamMap( { 'dificultad': 'facil' } ) } }
+          useValue: { snapshot: { paramMap: convertToParamMap({ 'dificultad': 'facil' }) } }
         }
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -43,35 +43,19 @@ describe('HorcaComponent', () => {
 
     juego_fixture = TestBed.createComponent(JuegoComponent);
     juego_component = juego_fixture.componentInstance;
-    juego_fixture .detectChanges();
+    juego_fixture.detectChanges();
   });
 
-/* 
-  Tests de Front-End
+
+  /* 
+    ACCEPTANCE TESTS
   */
-  it('debería cambiar agregar un miembro en la imagen del ahorcado', () => {
-    let url_imagen_horca = component.urlImagen;
-    let url_imagen_horca_nueva = component.urlImagen;
 
-    let letra = 'C';
-    juego_component.CoincideLetra(letra);
-
-    url_imagen_horca = component.urlImagen;
-    
-    if(juego_component.palabraAdivinar.includes("C"))
-      expect(url_imagen_horca_nueva.match(url_imagen_horca)).toBeTruthy;
-    else expect(url_imagen_horca_nueva.match(url_imagen_horca)).toBeTruthy;
+  it('debería mostrar el cuerpo entero del ahorcado al perder', () => {
+    let fallos_esperados = 6;
+    component.fallos = fallos_esperados;
+    component.ngOnChanges()
+    expect(component.urlImagen).toEqual("../../assets/img/6.jpg");
   })
-
-/* 
-  ACCEPTANCE TESTS
-*/
-
-it('debería mostrar el cuerpo entero del ahorcado al perder', () => {
-  let fallos_esperados = 6;
-  component.fallos = fallos_esperados;
-  component.ngOnChanges()
-  expect(component.urlImagen).toEqual("../../assets/img/6.jpg");
-})
 
 });
