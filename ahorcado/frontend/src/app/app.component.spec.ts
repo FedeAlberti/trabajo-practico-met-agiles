@@ -32,6 +32,4 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('ahorcado');
   });
   
- 
-  
 });
