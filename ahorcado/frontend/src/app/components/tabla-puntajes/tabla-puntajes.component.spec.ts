@@ -46,7 +46,7 @@ describe('TablaPuntajesComponent', () => {
     expect(color).toEqual("red");
   });
 
-  it('debería poner en rojo el color de la barra de efectividad', ()=> {
+  it('debería poner en amarillo el color de la barra de efectividad', ()=> {
     let puntaje = {
       nivel:'',
       aciertos:5,
@@ -56,7 +56,7 @@ describe('TablaPuntajesComponent', () => {
     expect(color).toEqual("yellow");
   });
 
-  it('debería poner en rojo el color de la barra de efectividad', ()=> {
+  it('debería poner en verde el color de la barra de efectividad', ()=> {
     let puntaje = {
       nivel:'',
       aciertos:8,
