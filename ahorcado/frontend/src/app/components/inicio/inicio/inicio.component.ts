@@ -9,7 +9,7 @@ import { GameService } from 'src/app/services/game.service';
 })
 export class InicioComponent implements OnInit {
 
-  urlImagen = '../../assets/img/ahorcado-inicio.png'
+  urlImagen = '../../assets/img/ahorcado-inicio.png';
 
   constructor(private gameService:GameService,
     private router:Router) { }
@@ -22,7 +22,7 @@ export class InicioComponent implements OnInit {
       this.router.navigate(['/juego',dificultad]);
     }
     else {
-      this.router.navigateByUrl('nickname');
+      this.router.navigate(['/nickname']);
     }
   }
 

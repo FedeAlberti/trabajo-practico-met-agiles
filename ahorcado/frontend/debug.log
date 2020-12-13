@@ -16,3 +16,4 @@
 [1213/150955.749:ERROR:file_io_win.cc(162)] CreateFile C:\Users\Sebas\AppData\Local\Temp\karma-4827329\Crashpad\settings.dat: El sistema no puede encontrar la ruta especificada. (0x3)
 [1213/150955.749:ERROR:file_io_win.cc(171)] CreateFile C:\Users\Sebas\AppData\Local\Temp\karma-4827329\Crashpad\reports\4ca6452a-5c49-4f7c-a476-5d199dc82e14.dmp: El sistema no puede encontrar la ruta especificada. (0x3)
 [1213/150955.749:ERROR:crash_report_exception_handler.cc(99)] PrepareNewCrashReport failed
+[1213/152406.907:ERROR:directory_reader_win.cc(43)] FindFirstFile: El sistema no puede encontrar la ruta especificada. (0x3)
