@@ -10,3 +10,9 @@
 [1204/232858.545:ERROR:process_reader_win.cc(123)] NtOpenThread: {Acceso denegado} Un proceso ha solicitado acceso a un objeto, pero no se le han concedido esos derechos de acceso. (0xc0000022)
 [1204/232859.075:ERROR:exception_snapshot_win.cc(99)] thread ID 11800 not found in process
 [1213/131528.601:ERROR:directory_reader_win.cc(43)] FindFirstFile: El sistema no puede encontrar la ruta especificada. (0x3)
+[1213/140645.423:ERROR:directory_reader_win.cc(43)] FindFirstFile: El sistema no puede encontrar la ruta especificada. (0x3)
+[1213/150955.612:ERROR:process_reader_win.cc(151)] SuspendThread: Acceso denegado. (0x5)
+[1213/150955.612:ERROR:process_reader_win.cc(151)] SuspendThread: Acceso denegado. (0x5)
+[1213/150955.749:ERROR:file_io_win.cc(162)] CreateFile C:\Users\Sebas\AppData\Local\Temp\karma-4827329\Crashpad\settings.dat: El sistema no puede encontrar la ruta especificada. (0x3)
+[1213/150955.749:ERROR:file_io_win.cc(171)] CreateFile C:\Users\Sebas\AppData\Local\Temp\karma-4827329\Crashpad\reports\4ca6452a-5c49-4f7c-a476-5d199dc82e14.dmp: El sistema no puede encontrar la ruta especificada. (0x3)
+[1213/150955.749:ERROR:crash_report_exception_handler.cc(99)] PrepareNewCrashReport failed

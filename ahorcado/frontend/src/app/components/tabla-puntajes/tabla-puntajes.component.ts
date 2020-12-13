@@ -17,22 +17,13 @@ export class TablaPuntajesComponent implements OnInit {
     this.puntajes = this.gameService.puntajes;
   }
 
-  validarIntentos(p){
-    if(p.aciertos + p.fallos !== 0) {
-      return true;
-    }
-    else{
-      return false;
-    }
-  }
 
-  calcularPromedio(p) {
+  calcularPorcentaje(p) {
     return ((p.aciertos)/(p.aciertos + p.fallos) * 100)
   }
 
   validarColor(p) {
-    let promedio = this.calcularPromedio(p);
-    console.log(promedio);
+    let promedio = this.calcularPorcentaje(p);
     if( promedio <= 40) {
       return "red"
     }
