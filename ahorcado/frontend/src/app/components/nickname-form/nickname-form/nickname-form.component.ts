@@ -16,7 +16,7 @@ export class NicknameFormComponent implements OnInit {
     userName: new FormControl('', [Validators.required,Validators.minLength(4),Validators.maxLength(10)]),
   })
   
-  constructor(private route: ActivatedRoute, 
+  constructor( 
     private router: Router,
     private gameService: GameService) { }
     
