@@ -1,6 +1,7 @@
 version: 2.1
 orbs:
   sonarcloud: sonarsource/sonarcloud@1.0.2
+  heroku: circleci/heroku@1.2.3
 
 jobs:
   build:
@@ -26,24 +27,7 @@ jobs:
       - run: 
           name: npm run e2e
           command: npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
-    deploy:
-        machine:
-            enabled: true
-        working_directory: ~/repo/ahorcado/frontend
-        environment:
-          HEROKU_APP: "jotaese-ahoracado" 
-        steps:
-          - checkout
-          - run:
-              name: Setup Heroku
-              command: bash .circleci/setup-heroku.sh 
 
-          - run:
-              command: |
-                git push heroku sequential-branch-filter:master
-                heroku run rake db:migrate
-                sleep 5 
-                heroku restart
             
 
 workflows:
@@ -51,6 +35,6 @@ workflows:
     jobs:
       - build:
           context: SonarCloud
-      - deploy:
+      - heroku/deploy-via-git: # Use the pre-configured job, deploy-via-git
           requires:
-            - build
+            - build    
