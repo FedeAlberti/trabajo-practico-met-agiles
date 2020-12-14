@@ -2,7 +2,9 @@ import { TestBed, async } from '@angular/core/testing';
 import { Router, RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { InicioComponent } from './components/inicio/inicio/inicio.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar/nav-bar.component';
+import { TablaPuntajesComponent } from './components/tabla-puntajes/tabla-puntajes.component';
 
 describe('AppComponent', () => {
   let routerSpy = {navigate: jasmine.createSpy('navigate')};
@@ -11,11 +13,16 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent, NavBarComponent
       ],
-      providers:[
-        { provide: Router, useValue: routerSpy }
-      ],
       imports:[
-        RouterTestingModule
+        RouterTestingModule.withRoutes([{
+          path: '',
+          component:InicioComponent
+        },
+        {
+          path:'puntajes',
+          component:TablaPuntajesComponent
+        }
+      ])
       ]
     }).compileComponents();
   }));
@@ -31,7 +38,5 @@ describe('AppComponent', () => {
     const app = fixture.componentInstance;
     expect(app.title).toEqual('Ahorcado');
   });
-  
- 
   
 });

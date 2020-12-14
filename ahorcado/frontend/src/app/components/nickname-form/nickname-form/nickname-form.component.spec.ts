@@ -23,6 +23,7 @@ describe('NicknameFormComponent', () => {
     fixture.detectChanges();
   });
 
+  //Unit Tests
   it('should create', () => {
     expect(component).toBeTruthy();
   });
@@ -36,5 +37,4 @@ describe('NicknameFormComponent', () => {
     let usuario = localStorage.getItem('usuario');
     expect(usuario).toBeTruthy();
   })
-
 });

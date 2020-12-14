@@ -37,6 +37,8 @@ describe('JuegoComponent', () => {
     fixture.detectChanges();
   });
 
+//UNIT TESTS
+
   it('debería generar una palabra al azar', () => {
     component.palabrasPosible = ["PALABRAS", "PARA", "EL", "TEST"];
     let palabra = component.generarPalabraAdivinar();
@@ -112,9 +114,9 @@ describe('JuegoComponent', () => {
     expect(component.resultado).toEqual('Lose');
   })
 
-  /* 
-    Tests de Front-End
-  */
+
+  //UI ACCEPTANCE TESTS
+
   it('deberia cambiar el estado del boton a bloqeuado', () => {
 
     component.generarJuego();
@@ -131,6 +133,40 @@ describe('JuegoComponent', () => {
 
   });
 
+  //ACCEPTANCE TESTS
+
+  it('debería iniciar nuevo juego, ingresar 6 letras incorrectas y perder la partida', () => {
+    //Inicialización del juego
+    component.generarJuego();
+    //El usuario ingresa 6 letras incorrectas
+      component.buttons.forEach(button => {
+        if(component.fallos===6)
+          return
+        component.PresionarBoton(button)
+      });
+    //Comprobamos si se el usuario perdió
+    expect(component.resultado).toEqual('Lose');
+  
+  });
+
+  it('debería iniciar nuevo juego, ingresar 6 letras correctas y ganar la partida', () => {
+    //Inicialización del juego
+    component.generarJuego();
+    //El usuario ingresa 6 letras correctas
+      for (let index = 0; index < component.palabraAdivinar.length; index++) {
+        let button = component.buttons.find(btn => btn.letra === component.palabraAdivinar[index]);
+        component.PresionarBoton(button);       
+      }
+    //Comprobamos si se el usuario ganó
+    expect(component.resultado).toEqual('Win');
+  });
+
+
 }
 
+
 )
+
+
+
+

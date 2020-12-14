@@ -12,15 +12,11 @@ export class NavBarComponent implements OnInit {
   elems : any;
   instances : any;
   options = [];
-  constructor(private router:Router) { }
+  constructor() { }
 
   ngOnInit(): void {
     this.elems = document.querySelectorAll('.dropdown-trigger');
     this.instances = M.Dropdown.init(this.elems, this.options);
-  }
-
-  goToPuntajes() {
-    this.router.navigate(['/puntajes']);
   }
 
 }
