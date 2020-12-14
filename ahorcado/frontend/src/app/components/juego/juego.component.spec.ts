@@ -8,6 +8,7 @@ import { JuegoComponent } from './juego.component';
 import { MatConfirmDialogComponent } from '../mat-confirm-dialog/mat-confirm-dialog.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ActivatedRoute, convertToParamMap, Router } from '@angular/router';
+import { GameService } from 'src/app/services/game.service';
 
 
 describe('JuegoComponent', () => {
@@ -15,6 +16,7 @@ describe('JuegoComponent', () => {
   let component: JuegoComponent;
   let fixture: ComponentFixture<JuegoComponent>;
   let activatedRoute: ActivatedRoute;
+  let service: GameService = new GameService();
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [JuegoComponent, HorcaComponent, MatConfirmDialogComponent, FormGroupDirective],
@@ -23,6 +25,10 @@ describe('JuegoComponent', () => {
         {
           provide: ActivatedRoute,
           useValue: { snapshot: { paramMap: convertToParamMap({ 'dificultad': 'facil' }) } }
+        },
+        {
+          provide: GameService,
+          useValue: service
         }
       ]
 
@@ -109,6 +115,8 @@ describe('JuegoComponent', () => {
 
 
   it('debería arriesgar palabra correcta y perder la partida', () => {
+    //Inicialización del usuario 
+    service.guardarUsuario('user');
     component.arriesgarForm.patchValue({ palabra: 'palabra-incorrecta' });
     component.arriesgar();
     expect(component.resultado).toEqual('Lose');
@@ -118,8 +126,11 @@ describe('JuegoComponent', () => {
   //UI ACCEPTANCE TESTS
 
   it('deberia cambiar el estado del boton a bloqeuado', () => {
+    //Inicialización del usuario 
+    service.guardarUsuario('user');
 
     component.generarJuego();
+
     const primeraLetra = component.palabraAdivinar[0];
 
     var boton = {
@@ -136,6 +147,8 @@ describe('JuegoComponent', () => {
   //ACCEPTANCE TESTS
 
   it('debería iniciar nuevo juego, ingresar 6 letras incorrectas y perder la partida', () => {
+    //Inicialización del usuario 
+    service.guardarUsuario('user');
     //Inicialización del juego
     component.generarJuego();
     //El usuario ingresa 6 letras incorrectas
@@ -150,6 +163,8 @@ describe('JuegoComponent', () => {
   });
 
   it('debería iniciar nuevo juego, ingresar 6 letras correctas y ganar la partida', () => {
+    //Inicialización del usuario 
+    service.guardarUsuario('user');
     //Inicialización del juego
     component.generarJuego();
     //El usuario ingresa 6 letras correctas
