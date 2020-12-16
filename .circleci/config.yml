@@ -33,5 +33,5 @@ jobs:
 workflows:
   AhorcadoBuildDeploy:
     jobs:
-      - build
       - heroku/deploy-via-git
+      - build

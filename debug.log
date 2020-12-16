@@ -18,3 +18,4 @@
 [1213/150955.749:ERROR:crash_report_exception_handler.cc(99)] PrepareNewCrashReport failed
 [1213/152406.907:ERROR:directory_reader_win.cc(43)] FindFirstFile: El sistema no puede encontrar la ruta especificada. (0x3)
 [1213/193731.460:ERROR:directory_reader_win.cc(43)] FindFirstFile: El sistema no puede encontrar la ruta especificada. (0x3)
+[1216/013510.965:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
