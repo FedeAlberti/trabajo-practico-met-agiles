@@ -37,3 +37,5 @@ workflows:
       - heroku/deploy-via-git: # Use the pre-configured job, deploy-via-git
           requires:
             - build
+          branch:
+            default: master
