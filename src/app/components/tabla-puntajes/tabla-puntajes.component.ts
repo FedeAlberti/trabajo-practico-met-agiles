@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { GameService } from 'src/app/services/game.service';
 
 @Component({
@@ -10,11 +11,13 @@ export class TablaPuntajesComponent implements OnInit {
 
   puntajes = [];
 
-  constructor(private gameService: GameService) { }
+  constructor(private gameService: GameService, private router :Router) { }
 
   ngOnInit(): void {
     this.gameService.getPuntajeActual();
     this.puntajes = this.gameService.puntajes;
+    if(!localStorage.getItem('usuario')) 
+      this.router.navigateByUrl('');
   }
 
 

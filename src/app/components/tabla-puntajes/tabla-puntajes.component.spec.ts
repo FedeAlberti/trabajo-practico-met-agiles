@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import {RouterTestingModule} from '@angular/router/testing';
 import { TablaPuntajesComponent } from './tabla-puntajes.component';
 
 describe('TablaPuntajesComponent', () => {
@@ -8,7 +8,8 @@ describe('TablaPuntajesComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TablaPuntajesComponent ]
+      declarations: [ TablaPuntajesComponent ],
+      imports: [RouterTestingModule]
     })
     .compileComponents();
   }));

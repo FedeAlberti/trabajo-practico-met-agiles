@@ -12,11 +12,22 @@ export class NavBarComponent implements OnInit {
   elems : any;
   instances : any;
   options = [];
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
     this.elems = document.querySelectorAll('.dropdown-trigger');
     this.instances = M.Dropdown.init(this.elems, this.options);
   }
 
+  clearUser() {
+    localStorage.removeItem('usuario');
+    localStorage.removeItem('puntajes');
+    this.router.navigateByUrl('');
+  }
+
+  isLoggedIn() {
+    if(localStorage.getItem('usuario'))
+      return true
+    return false 
+  }
 }

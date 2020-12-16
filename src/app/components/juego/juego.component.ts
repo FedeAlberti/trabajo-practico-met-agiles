@@ -222,7 +222,8 @@ export class JuegoComponent implements OnInit {
 
   private JuegoPerdido() {
     this.gameService.actualizarPuntaje(this.dificultad, false);
-    this.openConfirmDialog("¡¡¡Has perdido!!!", "lose");
+    this.openConfirmDialog("¡¡¡Has perdido!!! \n La palabra era: "
+      + this.palabraAdivinar, "lose");
   }
 
   private JuegoGanado() {
