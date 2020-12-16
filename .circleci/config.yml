@@ -33,7 +33,4 @@ jobs:
 workflows:
   main:
     jobs:
-      - build:
       - heroku/deploy-via-git: # Use the pre-configured job, deploy-via-git
-          requires:
-            - build    
