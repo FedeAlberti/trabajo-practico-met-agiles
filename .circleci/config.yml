@@ -31,11 +31,9 @@ jobs:
             
 
 workflows:
-  AhorcadoBuildDeploy:
+  main:
     jobs:
-      - build
+      - build:
       - heroku/deploy-via-git: # Use the pre-configured job, deploy-via-git
           requires:
             - build
-          branch:
-            default: master
